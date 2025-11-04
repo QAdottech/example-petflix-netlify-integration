@@ -43,7 +43,7 @@ export default function Sidebar() {
             Categories
           </h3>
           <div className="space-y-1">
-            {['Dogs', 'Cats', 'Birds', 'Hamsters', 'Rabbits'].map(
+            {['Dogs', 'Cats', 'Birds', 'Hamsters', 'Rabbits', 'Ducks'].map(
               (category) => (
                 <Link
                   key={category}
