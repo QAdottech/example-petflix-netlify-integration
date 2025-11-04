@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, Heart, Play, Clock, Eye, Calendar, Download } from 'lucide-react'
+import { ArrowLeft, Heart, Play, Clock, Eye, Calendar, Download, Share2 } from 'lucide-react'
 import { Video } from '@/types/video'
 import {
   getVideos,
@@ -21,6 +21,7 @@ export default function VideoPage() {
   const [video, setVideo] = useState<Video | null>(null)
   const [loading, setLoading] = useState(true)
   const [favorited, setFavorited] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const loadVideo = async () => {
@@ -68,6 +69,45 @@ export default function VideoPage() {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+  }
+
+  const handleCopyLink = async () => {
+    if (!video) return
+
+    // Get the current page URL
+    const currentUrl = window.location.href
+
+    try {
+      // Copy to clipboard
+      await navigator.clipboard.writeText(currentUrl)
+      
+      // Show feedback
+      setCopied(true)
+      
+      // Reset the copied state after 2 seconds
+      setTimeout(() => {
+        setCopied(false)
+      }, 2000)
+    } catch (error) {
+      console.error('Failed to copy link:', error)
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement('textarea')
+      textArea.value = currentUrl
+      textArea.style.position = 'fixed'
+      textArea.style.left = '-999999px'
+      document.body.appendChild(textArea)
+      textArea.select()
+      try {
+        document.execCommand('copy')
+        setCopied(true)
+        setTimeout(() => {
+          setCopied(false)
+        }, 2000)
+      } catch (err) {
+        console.error('Fallback: Failed to copy', err)
+      }
+      document.body.removeChild(textArea)
+    }
   }
 
   const handleSearch = (query: string) => {
@@ -179,6 +219,18 @@ export default function VideoPage() {
                   </div>
                 </div>
                 <div className="flex gap-2">
+                  <button
+                    onClick={handleCopyLink}
+                    className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
+                      copied
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                    title="Copy link to video"
+                  >
+                    <Share2 className="h-4 w-4 mr-2" />
+                    {copied ? 'Copied!' : 'Share'}
+                  </button>
                   <button
                     onClick={handleDownload}
                     className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
