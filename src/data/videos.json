@@ -299,6 +299,66 @@
       "duration": "3:28",
       "category": "dogs",
       "featured": false
+    },
+    {
+      "id": "26",
+      "title": "Duck Army Invades Park - Adorable Chaos",
+      "description": "A massive flock of ducks marches through the park demanding bread. Visitors are overwhelmed!",
+      "thumbnail": "https://picsum.photos/400/225?random=26",
+      "channel": "Waterfowl Wonders",
+      "views": "4.8M",
+      "uploadTime": "2 days ago",
+      "duration": "3:15",
+      "category": "ducks",
+      "featured": true
+    },
+    {
+      "id": "27",
+      "title": "Baby Ducklings Follow Robot - Imprinting Gone Wrong",
+      "description": "These adorable ducklings think a robot vacuum is their mother and follow it everywhere!",
+      "thumbnail": "https://picsum.photos/400/225?random=27",
+      "channel": "Duckling Diaries",
+      "views": "6.3M",
+      "uploadTime": "5 days ago",
+      "duration": "4:22",
+      "category": "ducks",
+      "featured": true
+    },
+    {
+      "id": "28",
+      "title": "Duck Tries to Steal Sandwich - Ocean's Eleven Style",
+      "description": "Watch this clever duck execute the perfect sandwich heist at a picnic!",
+      "thumbnail": "https://picsum.photos/400/225?random=28",
+      "channel": "Sneaky Birds",
+      "views": "3.7M",
+      "uploadTime": "1 week ago",
+      "duration": "2:48",
+      "category": "ducks",
+      "featured": false
+    },
+    {
+      "id": "29",
+      "title": "Duck Discovers Sprinkler - Pure Joy",
+      "description": "Quackers the duck experiences a lawn sprinkler for the first time and can't contain his excitement!",
+      "thumbnail": "https://picsum.photos/400/225?random=29",
+      "channel": "Happy Ducks",
+      "views": "5.1M",
+      "uploadTime": "3 days ago",
+      "duration": "3:33",
+      "category": "ducks",
+      "featured": true
+    },
+    {
+      "id": "30",
+      "title": "Duck Plays Fetch with Dog - Unlikely Friendship",
+      "description": "Donald the duck learns to play fetch alongside his best friend, a Golden Retriever named Max!",
+      "thumbnail": "https://picsum.photos/400/225?random=30",
+      "channel": "Animal BFFs",
+      "views": "7.9M",
+      "uploadTime": "4 days ago",
+      "duration": "4:05",
+      "category": "ducks",
+      "featured": true
     }
   ]
 }
