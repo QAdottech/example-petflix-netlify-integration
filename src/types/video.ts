@@ -9,6 +9,7 @@ export interface Video {
   duration: string
   category: string
   featured: boolean
+  downloadUrl?: string
 }
 
 export interface VideoData {
