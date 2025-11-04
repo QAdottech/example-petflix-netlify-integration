@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Petflix - QA.tech + Netlify Integration Demo
 
-## Getting Started
+This is an **example Petflix application** built with Next.js, designed to demonstrate [QA.tech](https://qa.tech)'s seamless integration with Netlify for automated visual testing and quality assurance.
 
-First, run the development server:
+## 🎯 About This Demo
+
+Petflix is a fictional pet video streaming platform that showcases:
+
+- Modern Next.js 15 application architecture
+- Responsive UI with Tailwind CSS
+- Dynamic routing and state management
+- Search and filtering functionality
+- Favorites management
+
+This repository serves as a reference implementation for demonstrating how QA.tech can automatically test web applications deployed on Netlify, ensuring visual consistency and functional integrity across deployments.
+
+## 🚀 Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Video Browsing**: Explore a collection of fictional pet videos
+- **Search**: Find videos by title, description, or channel
+- **Favorites**: Save your favorite videos for later
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Modern UI**: Built with Tailwind CSS and Lucide icons
 
-## Learn More
+## 🧪 QA.tech Integration
 
-To learn more about Next.js, take a look at the following resources:
+This application is configured to work with QA.tech's automated testing platform when deployed to Netlify. QA.tech provides:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Automated visual regression testing
+- Cross-browser compatibility testing
+- Deployment preview testing
+- AI-powered bug detection
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Tech Stack
 
-## Deploy on Vercel
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Icons**: Lucide React
+- **Deployment**: Netlify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📝 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/              # Next.js app router pages
+├── components/       # Reusable UI components
+├── data/            # Mock video data
+├── types/           # TypeScript type definitions
+└── utils/           # Utility functions
+```
+
+## 🔗 Resources
+
+- [QA.tech Documentation](https://qa.tech/docs)
+- [Netlify Documentation](https://docs.netlify.com)
+- [Next.js Documentation](https://nextjs.org/docs)
+
+---
+
+**Note**: This is a demonstration application with fictional content. All video data and images are for example purposes only.
