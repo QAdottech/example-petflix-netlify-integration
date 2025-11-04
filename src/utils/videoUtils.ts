@@ -75,3 +75,74 @@ export const isFavorite = (videoId: string): boolean => {
   const favorites = getFavoritesFromStorage()
   return favorites.includes(videoId)
 }
+
+// View tracking functions
+export interface VideoViewStats {
+  videoId: string
+  viewCount: number
+  lastViewed: string
+}
+
+export const getViewStatsFromStorage = (): Record<string, VideoViewStats> => {
+  if (typeof window === 'undefined') return {}
+
+  try {
+    const stats = localStorage.getItem('petflix-view-stats')
+    return stats ? JSON.parse(stats) : {}
+  } catch {
+    return {}
+  }
+}
+
+export const trackVideoView = (videoId: string): void => {
+  if (typeof window === 'undefined') return
+
+  try {
+    const stats = getViewStatsFromStorage()
+    const currentStats = stats[videoId] || {
+      videoId,
+      viewCount: 0,
+      lastViewed: new Date().toISOString(),
+    }
+
+    currentStats.viewCount += 1
+    currentStats.lastViewed = new Date().toISOString()
+
+    stats[videoId] = currentStats
+    localStorage.setItem('petflix-view-stats', JSON.stringify(stats))
+  } catch {
+    // Handle error silently
+  }
+}
+
+export const getVideoViewCount = (videoId: string): number => {
+  const stats = getViewStatsFromStorage()
+  return stats[videoId]?.viewCount || 0
+}
+
+export const getAllViewStats = (): VideoViewStats[] => {
+  const stats = getViewStatsFromStorage()
+  return Object.values(stats)
+}
+
+export const getTotalViews = (): number => {
+  const stats = getAllViewStats()
+  return stats.reduce((total, stat) => total + stat.viewCount, 0)
+}
+
+export const getMostViewedVideos = async (
+  limit: number = 10
+): Promise<Array<Video & { viewCount: number }>> => {
+  const videos = await getVideos()
+  const stats = getViewStatsFromStorage()
+
+  const videosWithStats = videos
+    .map((video) => ({
+      ...video,
+      viewCount: stats[video.id]?.viewCount || 0,
+    }))
+    .sort((a, b) => b.viewCount - a.viewCount)
+    .slice(0, limit)
+
+  return videosWithStats
+}
