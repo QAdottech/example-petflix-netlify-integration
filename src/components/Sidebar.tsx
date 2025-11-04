@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Home, Search, Heart } from 'lucide-react'
+import { Home, Search, Heart, BarChart3 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 export default function Sidebar() {
@@ -11,6 +11,7 @@ export default function Sidebar() {
     { href: '/', label: 'Home', icon: Home },
     { href: '/search', label: 'Search', icon: Search },
     { href: '/favorites', label: 'Favorites', icon: Heart },
+    { href: '/stats', label: 'Stats', icon: BarChart3 },
   ]
 
   return (

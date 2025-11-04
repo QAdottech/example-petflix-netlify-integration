@@ -11,6 +11,8 @@ import {
   addToFavorites,
   removeFromFavorites,
   isFavorite,
+  trackVideoView,
+  getVideoViewCount,
 } from '@/utils/videoUtils'
 import Header from '@/components/Header'
 import Sidebar from '@/components/Sidebar'
@@ -21,6 +23,7 @@ export default function VideoPage() {
   const [video, setVideo] = useState<Video | null>(null)
   const [loading, setLoading] = useState(true)
   const [favorited, setFavorited] = useState(false)
+  const [localViewCount, setLocalViewCount] = useState(0)
 
   useEffect(() => {
     const loadVideo = async () => {
@@ -30,6 +33,10 @@ export default function VideoPage() {
         setVideo(foundVideo || null)
         if (foundVideo) {
           setFavorited(isFavorite(foundVideo.id))
+          // Track the view
+          trackVideoView(foundVideo.id)
+          // Get the updated view count
+          setLocalViewCount(getVideoViewCount(foundVideo.id))
         }
       } catch (error) {
         console.error('Error loading video:', error)
@@ -198,12 +205,20 @@ export default function VideoPage() {
               </div>
             </div>
 
-            {/* Category Badge */}
-            <div className="mt-4">
+            {/* Category Badge and Local Views */}
+            <div className="mt-4 flex items-center justify-between">
               <span className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
                 {video.category.charAt(0).toUpperCase() +
                   video.category.slice(1)}
               </span>
+              <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium flex items-center">
+                <Eye className="h-4 w-4 mr-2" />
+                <span>
+                  You&apos;ve watched this video{' '}
+                  <strong>{localViewCount}</strong>{' '}
+                  {localViewCount === 1 ? 'time' : 'times'}
+                </span>
+              </div>
             </div>
           </div>
         </main>
