@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Eye, TrendingUp, Video as VideoIcon, BarChart3 } from 'lucide-react'
+import { Eye, TrendingUp, Video as VideoIcon, BarChart3, Clock } from 'lucide-react'
 import { Video } from '@/types/video'
 import {
   getMostViewedVideos,
@@ -15,6 +15,22 @@ import Sidebar from '@/components/Sidebar'
 
 interface VideoWithViews extends Video {
   viewCount: number
+  lastViewed?: string
+}
+
+const formatLastViewed = (isoString?: string): string => {
+  if (!isoString) return 'Never'
+  
+  const date = new Date(isoString)
+  const now = new Date()
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+  
+  if (diffInSeconds < 60) return 'Just now'
+  if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`
+  if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`
+  if (diffInSeconds < 604800) return `${Math.floor(diffInSeconds / 86400)} days ago`
+  
+  return date.toLocaleDateString()
 }
 
 export default function StatsPage() {
@@ -217,6 +233,10 @@ export default function StatsPage() {
                           <span>{video.views} views</span>
                           <span className="mx-1">•</span>
                           <span>{video.uploadTime}</span>
+                        </div>
+                        <div className="flex items-center text-xs text-blue-600 mt-1">
+                          <Clock className="h-3 w-3 mr-1" />
+                          <span>Last viewed: {formatLastViewed(video.lastViewed)}</span>
                         </div>
                       </div>
 

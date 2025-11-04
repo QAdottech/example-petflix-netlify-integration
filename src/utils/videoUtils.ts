@@ -132,7 +132,7 @@ export const getTotalViews = (): number => {
 
 export const getMostViewedVideos = async (
   limit: number = 10
-): Promise<Array<Video & { viewCount: number }>> => {
+): Promise<Array<Video & { viewCount: number; lastViewed?: string }>> => {
   const videos = await getVideos()
   const stats = getViewStatsFromStorage()
 
@@ -140,6 +140,7 @@ export const getMostViewedVideos = async (
     .map((video) => ({
       ...video,
       viewCount: stats[video.id]?.viewCount || 0,
+      lastViewed: stats[video.id]?.lastViewed,
     }))
     .sort((a, b) => b.viewCount - a.viewCount)
     .slice(0, limit)
